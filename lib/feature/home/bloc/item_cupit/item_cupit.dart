@@ -8,7 +8,6 @@ class ItemCubit extends Cubit<ItemState> {
 
   ItemCubit() : super(ItemInitial());
 
-  // 1. جلب كافة العناصر
   Future<void> getItems() async {
     emit(ItemLoading());
     try {
@@ -19,37 +18,31 @@ class ItemCubit extends Cubit<ItemState> {
     }
   }
 
-  // 2. إضافة عنصر جديد
   Future<void> addItem(ItemModel item) async {
     try {
       await dbHelper.createItem(item);
       emit(ItemAddSuccess());
       getItems();
     } catch (e) {
-      print(
-        "DATABASE ERROR: $e",
-      ); // هذا السطر سيخبرك بالسبب الحقيقي في الـ Console
       emit(ItemError("فشل في إضافة العنصر: $e"));
     }
   }
 
-  // 3. تعديل عنصر
   Future<void> updateItem(ItemModel item) async {
     try {
       await dbHelper.updateItem(item);
       emit(ItemUpdateSuccess());
-      getItems(); // تحديث القائمة
+      getItems();
     } catch (e) {
       emit(ItemError("فشل في تعديل العنصر"));
     }
   }
 
-  // 4. حذف عنصر
   Future<void> deleteItem(int id) async {
     try {
       await dbHelper.deleteItem(id);
       emit(ItemDeleteSuccess());
-      getItems(); // تحديث القائمة
+      getItems();
     } catch (e) {
       emit(ItemError("فشل في حذف العنصر"));
     }

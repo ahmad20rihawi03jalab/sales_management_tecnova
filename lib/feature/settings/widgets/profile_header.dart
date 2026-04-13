@@ -39,10 +39,7 @@ class ProfileHeader extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 4,
-                  ), // الإطار الأبيض
+                  border: Border.all(color: Colors.white, width: 4),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black12,

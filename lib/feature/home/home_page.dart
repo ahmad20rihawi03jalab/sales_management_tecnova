@@ -12,7 +12,6 @@ class HomePage extends StatelessWidget {
   void _showItemDialog(BuildContext context, {ItemModel? itemToUpdate}) {
     final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-    // تعريف الـ Controllers
     final TextEditingController nameController = TextEditingController(
       text: itemToUpdate?.name ?? '',
     );
@@ -82,7 +81,6 @@ class HomePage extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {
-              // تنظيف الذاكرة قبل الإغلاق
               nameController.dispose();
               quantityController.dispose();
               unitController.dispose();
@@ -109,7 +107,6 @@ class HomePage extends StatelessWidget {
                   context.read<ItemCubit>().updateItem(item);
                 }
 
-                // تنظيف الذاكرة بعد النجاح وقبل إغلاق النافذة
                 nameController.dispose();
                 quantityController.dispose();
                 unitController.dispose();
@@ -124,8 +121,6 @@ class HomePage extends StatelessWidget {
         ],
       ),
     ).then((_) {
-      // احتياطاً: في حال تم إغلاق الـ Dialog بالضغط خارجها (Barrier dismiss)
-      // نقوم بالتأكد من تدمير الـ controllers إذا لم يتم تدميرها بالفعل
       nameController.dispose();
       quantityController.dispose();
       unitController.dispose();
