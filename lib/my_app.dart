@@ -6,6 +6,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(themeMode: ThemeMode.dark, home: const Bottombar());
+    return MaterialApp(
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: const Color(0xff121212),
+        primaryColor: const Color(0xff7373d7),
+      ),
+      themeMode: ThemeMode.dark,
+      home: const Bottombar(),
+    );
   }
 }
